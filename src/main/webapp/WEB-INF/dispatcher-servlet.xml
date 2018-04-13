@@ -20,6 +20,7 @@
     <property name="mappings">
       <props>
         <prop key="index.htm">indexController</prop>
+        <prop key="index.htm">FrontController</prop>
       </props>
     </property>
   </bean>
@@ -35,5 +36,7 @@
   <bean name="indexController"
         class="org.springframework.web.servlet.mvc.ParameterizableViewController"
         p:viewName="index" />
-
+<!-- The FrontController
+-->
+  <bean name ="FrontController" class= "com.software2.mrcheese.despachador.controllers.FrontController"
 </beans>

@@ -37,4 +37,22 @@ form {
   height: 30em;
   width: 20em;
   border-radius: 1em;
+}#login-form{
+    display: flex;
+    flex-direction: column;
+}
+.campo{
+   width: 350px;
+  height: 40px; 
+}
+#btn-login{
+    width: 350px;
+    height: 40px;
+    border-radius: 5em;
+    background:#BF3838;
+    font-size: 1.1em;
+   
+}
+#btn-login:hover{
+    background:#FFFAF0;
 }

@@ -5,10 +5,19 @@
  */
 package com.software2.mrcheese.despachador.controllers;
 
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.portlet.ModelAndView;
+
 /**
  *
  * @author hhade
  */
+
 public class FrontController {
-  
+    
+    @RequestMapping(value="index.htm",method=RequestMethod.POST)
+    public String pasar(){
+            return "main";
+      }
 }

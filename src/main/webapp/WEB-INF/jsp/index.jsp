@@ -6,17 +6,22 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Welcome to Spring Web MVC project</title>
     <link rel="stylesheet" href="<c:url value="/src/css/index.css"/>">
+    
   </head>
 
   <body>
     <div class="container">
       <header>MR. CHEESE</header>
       <main class="content">
-        <form method="post" action="" id="login-form">
-          <div>
-            
-          </div>
+          <div class ="divlogin"
+               <form method="post" action="main.jsp" id="login-form">
+         
+              <input type="text" placeholder="Usuario" class="campo"/>
+              <input type ="password" placeholder="Contraseña" class="campo"/>
+              <input type="submit"  value="INGRESAR" id ="btn-login"/>
+          
         </form>
+      </div>       
       </main>
     </div> 
   </body>
