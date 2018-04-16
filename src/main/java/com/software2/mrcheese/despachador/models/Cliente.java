@@ -5,10 +5,14 @@
  */
 package com.software2.mrcheese.despachador.models;
 
+import org.springframework.beans.factory.annotation.Required;
+
 /**
  *
  * @author hhade
  */
 public class Cliente {
+  
+  private long id;
   
 }
