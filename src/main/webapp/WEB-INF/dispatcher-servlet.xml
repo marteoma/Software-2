@@ -20,8 +20,11 @@
         <property name="mappings">
             <props>
                 <prop key="index.htm">indexController</prop>
-                <prop key="admin.htm">adminController</prop>
-                <prop key="fragments/header.htm">adminController</prop>
+                <prop key="mensajeros.htm">adminController</prop>
+                <prop key="despachos.htm">adminController</prop>
+                <prop key="pedidos.htm">adminController</prop>                
+                <prop key="fragments/header.htm">fragmentsController</prop>
+                <prop key="fragments/nav.htm">fragmentsController</prop>
             </props>
         </property>
     </bean>
@@ -37,6 +40,9 @@
     <bean name="indexController"
           class="org.springframework.web.servlet.mvc.ParameterizableViewController"
           p:viewName="index" />
+    
+    <bean name="fragmentsController"
+          class="com.software2.mrcheese.despachador.controllers.FragmentsController" />
     
     <bean name="adminController"
           class="com.software2.mrcheese.despachador.controllers.AdminController" />

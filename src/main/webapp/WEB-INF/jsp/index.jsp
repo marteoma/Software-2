@@ -9,20 +9,18 @@
         <link rel="stylesheet" href="<c:url value="/src/css/main.css"/>">
     </head>
 
-  <body>
-    <div class="container">
-      <header>MR. CHEESE</header>
-      <main class="content">
-          <div class ="divlogin"
-               <form method="post" action="main.jsp" id="login-form">
-         
-              <input type="text" placeholder="Usuario" class="campo"/>
-              <input type ="password" placeholder="Contraseña" class="campo"/>
-              <input type="submit"  value="INGRESAR" id ="btn-login"/>
-          
-        </form>
-      </div>       
-      </main>
-    </div> 
-  </body>
+    <body>
+        <div class="container">
+            <jsp:include page="/fragments/header.htm"></jsp:include>
+            <main class="content">
+                <div class ="divlogin">
+                     <form method="post" action="/MrCheese-Despachador/mensajeros.htm" id="login-form">
+                        <input type="text" placeholder="Usuario" class="campo"/>
+                        <input type ="password" placeholder="Contraseña" class="campo"/>
+                        <input type="submit"  value="INGRESAR" id ="btn-login"/>
+                    </form>
+                </div>       
+            </main>
+        </div> 
+    </body>
 </html>

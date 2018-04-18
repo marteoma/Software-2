@@ -14,20 +14,17 @@ import org.springframework.web.servlet.ModelAndView;
  * @author hhade
  */
 @Controller
-public class AdminController {
+public class FragmentsController {
     
-    @RequestMapping("mensajeros.htm")
-    public ModelAndView mensajeros(){
+    @RequestMapping("fragments/header.htm")
+    public ModelAndView header(){
         return new ModelAndView();
     }
     
-    @RequestMapping("pedidos.htm")
-    public ModelAndView pedidos(){
+    @RequestMapping("fragments/nav.htm")
+    public ModelAndView nav(){
         return new ModelAndView();
     }
     
-    @RequestMapping("despachos.htm")
-    public ModelAndView despachos(){
-        return new ModelAndView();
-    }    
+    
 }
