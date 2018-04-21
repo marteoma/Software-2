@@ -5,6 +5,9 @@
  */
 package com.software2.mrcheese.despachador.controllers;
 
+import com.software2.mrcheese.despachador.models.Conectar;
+import java.util.List;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -16,6 +19,12 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class AdminController {
     
+    private JdbcTemplate jdbcTemplate;
+    
+    public AdminController(){
+        Conectar con = new Conectar();
+        this.jdbcTemplate = new JdbcTemplate(con.conectar());
+    }
     @RequestMapping("mensajeros.htm")
     public ModelAndView mensajeros(){
         return new ModelAndView();
@@ -23,7 +32,14 @@ public class AdminController {
     
     @RequestMapping("pedidos.htm")
     public ModelAndView pedidos(){
-        return new ModelAndView();
+        ModelAndView mav = new ModelAndView();
+        String sql= "SELECT * FROM public.pedido\n" +
+"ORDER BY id_pedido ASC ";
+        List datos = this.jdbcTemplate.queryForList(sql); 
+        mav.addObject("datos",datos);
+        mav.setViewName("pedidos");
+        return  mav;
+        
     }
     
     @RequestMapping("despachos.htm")

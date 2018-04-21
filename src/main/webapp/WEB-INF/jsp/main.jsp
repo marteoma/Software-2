@@ -11,8 +11,12 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Admin Mr Cheese</title>
+         <link rel="stylesheet" href="<c:url value="/src/css/index.css"/>">
     </head>
+    <header>
+        MR.CHEESE
+    </header>
     <body>
         <h1>THIS IS MAIN</h1>
         
