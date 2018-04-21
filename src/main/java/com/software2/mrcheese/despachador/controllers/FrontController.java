@@ -15,8 +15,15 @@ import org.springframework.web.portlet.ModelAndView;
  */
 
 public class FrontController {
+    @RequestMapping("main.htm")
+    public ModelAndView main(){
+        ModelAndView mav = new ModelAndView();
+        mav.setViewName("main");
+        
+        return mav;
+    };
     
-    @RequestMapping(value="index.htm",method=RequestMethod.POST)
+    @RequestMapping(value="main.htm",method=RequestMethod.POST)
     public String pasar(){
             return "main";
       }
