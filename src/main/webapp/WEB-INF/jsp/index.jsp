@@ -6,19 +6,19 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Welcome to Spring Web MVC project</title>
-        <link rel="stylesheet" href="<c:url value="/src/css/main.css"/>">
+        <link rel="stylesheet" href="<c:url value="/src/css/index.css"/>">
     </head>
 
     <body>
         <div class="container">
-            <jsp:include page="/fragments/header.htm"></jsp:include>
+            <jsp:include page="/fragments/header.htm" />                            
             <main class="content">
-                <div class ="divlogin">
-                     <form method="post" action="/MrCheese-Despachador/mensajeros.htm" id="login-form">
-                        <input type="text" placeholder="Usuario" class="campo"/>
-                        <input type ="password" placeholder="Contraseña" class="campo"/>
-                        <input type="submit"  value="INGRESAR" id ="btn-login"/>
-                    </form>
+                <div>
+                    <form:form method="post" commandName="admin">
+                        <form:input path="email"/>
+                        <form:input path="password" />
+                        <form:button id="admin-submit">Enviar</form:button>
+                    </form:form>
                 </div>       
             </main>
         </div> 

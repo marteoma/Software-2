@@ -19,12 +19,14 @@
     <bean id="urlMapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
         <property name="mappings">
             <props>
-                <prop key="index.htm">indexController</prop>
+                
                 <prop key="mensajeros.htm">adminController</prop>
                 <prop key="despachos.htm">adminController</prop>
                 <prop key="pedidos.htm">adminController</prop>                
                 <prop key="fragments/header.htm">fragmentsController</prop>
                 <prop key="fragments/nav.htm">fragmentsController</prop>
+                <prop key="index.htm">loginController</prop>
+                <prop key="main.htm">loginController</prop>
             </props>
         </property>
     </bean>
@@ -34,9 +36,6 @@
           p:prefix="/WEB-INF/jsp/"
           p:suffix=".jsp" />
 
-    <!--
-    The index controller.
-    -->
     <bean name="indexController"
           class="org.springframework.web.servlet.mvc.ParameterizableViewController"
           p:viewName="index" />
@@ -46,4 +45,8 @@
     
     <bean name="adminController"
           class="com.software2.mrcheese.despachador.controllers.AdminController" />
+    
+    <bean name="loginController"
+          class="com.software2.mrcheese.despachador.controllers.LoginController" />
+    
 </beans>
