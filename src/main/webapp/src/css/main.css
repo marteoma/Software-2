@@ -55,3 +55,22 @@ form {
 .options a:hover {
     text-decoration: underline;
 }
+
+#admin {
+    background: #D0CECE;
+    height: 30em;
+    width: 20em;
+    border-radius: 1em;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center
+}
+#password, #email, #admin-submit {
+    width: 80%;
+    height: 4em;
+    color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;        
+}

@@ -12,13 +12,15 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Admin Mr Cheese</title>
-         <link rel="stylesheet" href="<c:url value="/src/css/index.css"/>">
+        <link rel="stylesheet" href="<c:url value="/src/css/main.css"/>">
     </head>
-    <header>
-        MR.CHEESE
-    </header>
     <body>
-        <h1>THIS IS MAIN</h1>
-        
+        <div class="container">
+            <jsp:include page="/fragments/header.htm"></jsp:include>
+            <jsp:include page="/fragments/nav.htm"></jsp:include>
+            <main class="content">
+                
+            </main>      
+        </div> 
     </body>
 </html>
