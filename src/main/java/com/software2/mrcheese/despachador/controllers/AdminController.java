@@ -33,8 +33,7 @@ public class AdminController {
     @RequestMapping("pedidos.htm")
     public ModelAndView pedidos(){
         ModelAndView mav = new ModelAndView();
-        String sql= "SELECT * FROM public.pedido\n" +
-"ORDER BY id_pedido ASC ";
+        String sql= "SELECT * FROM public.pedido ORDER BY id_pedido ASC ";
         List datos = this.jdbcTemplate.queryForList(sql); 
         mav.addObject("datos",datos);
         mav.setViewName("pedidos");

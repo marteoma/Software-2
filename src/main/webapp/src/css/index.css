@@ -45,7 +45,6 @@ header {
 #password, #email, #admin-submit {
     width: 80%;
     height: 4em;
-    text-transform: uppercase;
     color: black;
     display: flex;
     justify-content: center;

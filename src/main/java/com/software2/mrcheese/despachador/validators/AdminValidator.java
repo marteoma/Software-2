@@ -26,6 +26,8 @@ public class AdminValidator implements Validator {
         Admin admin = (Admin) target;
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "email",
                 "required.nombre", "Ingrese el email");
+        
+        //TODO: Validaciones
     }
     
 }
