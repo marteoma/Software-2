@@ -1,29 +1,32 @@
 @import url('https://fonts.googleapis.com/css?family=Oldenburg');
 
 * {
-  margin: 0;
+  margin: 0  ;
   text-decoration: none;
   color: black;
 }
 
 body {
-  height: 100vh;
+  height: 100vh ;
+ 
 }
 
 .container {
-  height: 100%;
-  width: 100%;  
+  height: 100% !important;
+  width: 100% !important; 
+  margin-left: 0 !important;
+  
 }
 
 header {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 15%;
-  background: #BF3838;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important ;
+  height: 15% !important;
+  background: #BF3838 ;
   color: black;
-  font-size: 25pt;
-  font-family: 'Oldenburg', cursive, sans-serif;
+  font-size: 25pt !important;
+  font-family: 'Oldenburg', cursive, sans-serif !important;
 }
 
 .content {
@@ -37,23 +40,27 @@ header {
 form {
   background: #D0CECE;
   height: 30em;
-  width: 20em;
-  border-radius: 1em;
+  width: 20em !important;
+  border-radius: 1em !important;
 }
 
 .options {
     display: flex;
-    height: 8%;
+    height: 8% !important;
     background: gray;
-    flex-direction: row;
-    font-family: 'Oldenburg', cursive, sans-serif;
+    flex-direction: row !important;
+    font-family: 'Oldenburg', cursive, sans-serif!important ;
     color: black;
-    justify-content: space-around;
-    align-items: center;
+    justify-content: space-around !important;
+    align-items: center !important;
 }
 
 .options a:hover {
     text-decoration: underline;
+}
+a{
+    color: black !important;
+ 
 }
 
 #admin {

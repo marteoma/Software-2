@@ -27,6 +27,8 @@
                 <prop key="fragments/nav.htm">fragmentsController</prop>
                 <prop key="index.htm">loginController</prop>
                 <prop key="main.htm">loginController</prop>
+                <prop key="edit.htm">EditController</prop>
+                <prop key="delete.htm">DeleteController</prop>
             </props>
         </property>
     </bean>
@@ -48,5 +50,10 @@
     
     <bean name="loginController"
           class="com.software2.mrcheese.despachador.controllers.LoginController" />
+    <bean name="EditController"
+          class="com.software2.mrcheese.despachador.controllers.EditController" />
+    
+    <bean name="DeleteController"
+          class="com.software2.mrcheese.despachador.controllers.DeleteController" />
     
 </beans>

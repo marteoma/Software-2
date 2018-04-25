@@ -16,6 +16,7 @@
       <jsp:include page="/fragments/header.htm"></jsp:include>
       <jsp:include page="/fragments/nav.htm"></jsp:include>
       <main class="content">
+          
       <table class="table table-bordered table-striped table-hover">
           <thead>
               <tr>
@@ -24,6 +25,7 @@
                   <th>ID</th>
                   <th>Mensajero</th>
                   <th>Cliente</th>
+                  <th>Acciones</th>
               </tr>
           </thead>
           <tbody>
@@ -34,6 +36,10 @@
                   <td><c:out value="${dato.id_pedido}"/></td>
                   <td><c:out value="${dato.mensajero}"/></td>
                   <td><c:out value="${dato.cliente}"/></td>
+                  <td>
+                      <a href="<c:url value="edit.htm?id=${dato.id_pedido}"/>"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
+                      <a href="<c:url value="delete.htm?id=${dato.id_pedido}"/>"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
+                  </td>
               </tr>
           </c:forEach>
           </tbody>

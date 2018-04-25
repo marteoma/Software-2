@@ -17,7 +17,7 @@ public class Conectar {
         datasource.setDriverClassName("org.postgresql.Driver");
         datasource.setUrl("jdbc:postgresql://localhost:5432/MrCheese");
         datasource.setUsername("postgres");
-        datasource.setPassword("marteoma");
+        datasource.setPassword("carlos424");
         return datasource;
     }
     
