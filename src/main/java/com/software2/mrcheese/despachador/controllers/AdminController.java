@@ -48,9 +48,5 @@ public class AdminController {
     public ModelAndView despachos(){
         return new ModelAndView();
     }    
-    @RequestMapping( value="pedidos.htm", method= RequestMethod.POST)
-    public String form(int id , ModelMap model){
-        model.addAttribute("id",id);
-        return "edit";
-    }
+    
 }
