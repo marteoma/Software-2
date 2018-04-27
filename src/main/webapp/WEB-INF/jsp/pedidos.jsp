@@ -37,8 +37,8 @@
                   <td><c:out value="${dato.mensajero}"/></td>
                   <td><c:out value="${dato.cliente}"/></td>
                   <td>
-                      <a href="<c:url value="edit.htm?id=${dato.id_pedido}"/>"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
-                      <a href="<c:url value="delete.htm?id=${dato.id_pedido}"/>"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
+                      <a href="<c:url value="edit.htm?id=${dato.id_pedido}&type=pedido"/>"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
+                      <a href="<c:url value="delete.htm?id=${dato.id_pedido}&type=pedido"/>"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
                   </td>
               </tr>
           </c:forEach>
