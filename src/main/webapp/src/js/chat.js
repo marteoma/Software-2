@@ -11,7 +11,7 @@ var defaultApp = firebase.initializeApp(config);
 
 var database = defaultApp.database();
 
-function openChat(event, id) {
+function openChat(id) {
     document.getElementById('content')
             .innerHTML += `<div id="chat">
      <div id="close">X</div>                    

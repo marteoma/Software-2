@@ -33,7 +33,7 @@
                     <div class="group">
                         <h2>Mensajeros</h2>
                         <c:forEach items="${mensajeros}" var="c">
-                            <div onclick="openChat(event, ${c.id_mensajero})" class="destinario">
+                            <div onclick="openChat(${c.id_mensajero})" class="destinario">
                                 <c:out value="${c.nombre_mensajero}"></c:out>
                                 <c:out value=" "></c:out>
                                 <c:out value="${c.apellido}"></c:out>                                

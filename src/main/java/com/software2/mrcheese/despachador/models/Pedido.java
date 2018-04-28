@@ -11,11 +11,22 @@ package com.software2.mrcheese.despachador.models;
  */
 public class Pedido {
    private String contenido;
-    private String id_pedido;
+    private int id_pedido;
     private String estado;
-    private Mensajero mensajero;
-    private Cliente cliente;
+    private String mensajero;
+    private String cliente;
 
+    public Pedido(){
+        
+    }
+    public Pedido(int id,String conten,String state,String Messenger,String client){
+        id_pedido=id;
+        contenido=conten;
+        estado=state;
+        mensajero=Messenger;
+        cliente=client;
+        
+    }
     /**
      * @return the contenido
      */
@@ -33,14 +44,14 @@ public class Pedido {
     /**
      * @return the id_pedido
      */
-    public String getId_pedido() {
+    public int getId_pedido() {
         return id_pedido;
     }
 
     /**
      * @param id_pedido the id_pedido to set
      */
-    public void setId_pedido(String id_pedido) {
+    public void setId_pedido(int id_pedido) {
         this.id_pedido = id_pedido;
     }
 
@@ -61,28 +72,28 @@ public class Pedido {
     /**
      * @return the mensajero
      */
-    public Mensajero getMensajero() {
+    public String getMensajero() {
         return mensajero;
     }
 
     /**
      * @param mensajero the mensajero to set
      */
-    public void setMensajero(Mensajero mensajero) {
+    public void setMensajero(String mensajero) {
         this.mensajero = mensajero;
     }
 
     /**
      * @return the cliente
      */
-    public Cliente getCliente() {
+    public String getCliente() {
         return cliente;
     }
 
     /**
      * @param cliente the cliente to set
      */
-    public void setCliente(Cliente cliente) {
+    public void setCliente(String cliente) {
         this.cliente = cliente;
     }
 

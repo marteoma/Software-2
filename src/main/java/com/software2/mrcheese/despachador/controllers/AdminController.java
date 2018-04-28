@@ -9,7 +9,9 @@ import com.software2.mrcheese.despachador.conexiones.Conectar;
 import java.util.List;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
@@ -40,6 +42,7 @@ public class AdminController {
         return  mav;
         
     }
+  
     
     @RequestMapping("despachos.htm")
     public ModelAndView despachos(){
