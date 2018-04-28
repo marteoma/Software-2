@@ -5,7 +5,7 @@
  */
 package com.software2.mrcheese.despachador.controllers;
 
-import com.software2.mrcheese.despachador.models.Conectar;
+import com.software2.mrcheese.despachador.conexiones.Conectar;
 import java.util.List;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
@@ -35,7 +35,7 @@ public class AdminController {
         ModelAndView mav = new ModelAndView();
         String sql= "SELECT * FROM public.pedido ORDER BY id_pedido ASC ";
         List datos = this.jdbcTemplate.queryForList(sql); 
-        mav.addObject("datos",datos);
+        mav.addObject("datos", datos);
         mav.setViewName("pedidos");
         return  mav;
         
@@ -44,5 +44,5 @@ public class AdminController {
     @RequestMapping("despachos.htm")
     public ModelAndView despachos(){
         return new ModelAndView();
-    }    
+    }        
 }

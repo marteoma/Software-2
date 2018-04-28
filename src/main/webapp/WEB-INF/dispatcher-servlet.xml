@@ -19,7 +19,7 @@
     <bean id="urlMapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
         <property name="mappings">
             <props>
-                
+                <prop key="chat.htm">chatController</prop>
                 <prop key="mensajeros.htm">adminController</prop>
                 <prop key="despachos.htm">adminController</prop>
                 <prop key="pedidos.htm">adminController</prop>                
@@ -49,4 +49,6 @@
     <bean name="loginController"
           class="com.software2.mrcheese.despachador.controllers.LoginController" />
     
+    <bean name="chatController"
+          class="com.software2.mrcheese.despachador.controllers.ChatController" />
 </beans>

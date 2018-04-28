@@ -12,11 +12,31 @@ import java.util.ArrayList;
  * @author hhade
  */
 public class Cliente {
- private String nombre_cliente;
-   private String id_cliente;
-   private String direccion;
-   
-   private ArrayList<Pedido> pedidos = new ArrayList();
+
+    private String apellido;
+
+    public Cliente(String apellido, String nombre_cliente, String id_cliente, String direccion) {
+        this.apellido = apellido;
+        this.nombre_cliente = nombre_cliente;
+        this.id_cliente = id_cliente;
+        this.direccion = direccion;
+    }
+
+    public Cliente() {
+    }
+
+    public String getApellido() {
+        return apellido;
+    }
+
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
+    }
+    private String nombre_cliente;
+    private String id_cliente;
+    private String direccion;
+
+    private ArrayList<Pedido> pedidos = new ArrayList();
 
     /**
      * @return the nombre_cliente
@@ -72,5 +92,5 @@ public class Cliente {
      */
     public void setPedidos(ArrayList<Pedido> pedidos) {
         this.pedidos = pedidos;
-    } 
+    }
 }

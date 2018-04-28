@@ -12,10 +12,30 @@ import java.util.ArrayList;
  * @author hhade
  */
 public class Mensajero {
-  private String nombre_mensajero;
+
+    private String apellido;
+
+    public Mensajero(String apellido, String nombre_mensajero, String id_mensajero, String placa) {
+        this.apellido = apellido;
+        this.nombre_mensajero = nombre_mensajero;
+        this.id_mensajero = id_mensajero;
+        this.placa = placa;
+    }
+
+    public String getApellido() {
+        return apellido;
+    }
+
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
+    }
+
+    public Mensajero() {
+    }
+    private String nombre_mensajero;
     private String id_mensajero;
     private String placa;
- private ArrayList<Pedido> pedidos = new ArrayList();
+    private ArrayList<Pedido> pedidos = new ArrayList();
 
     /**
      * @return the nombre_mensajero

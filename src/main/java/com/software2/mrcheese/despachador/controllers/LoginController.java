@@ -6,7 +6,7 @@
 package com.software2.mrcheese.despachador.controllers;
 
 import com.software2.mrcheese.despachador.models.Admin;
-import com.software2.mrcheese.despachador.models.Conectar;
+import com.software2.mrcheese.despachador.conexiones.Conectar;
 import com.software2.mrcheese.despachador.validators.AdminValidator;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -54,22 +54,8 @@ public class LoginController {
         if (result.hasErrors()) {
             return new ModelAndView("index").addObject("admin", new Admin());
         } else {
-            String sql = "SELECT id, email, password FROM \"public\".\"Admin\" "
-                    + "WHERE email = ? AND password = ?";
-            List<Admin> datos = this.template.query(sql,
-                    new Object[]{admin.getEmail(), admin.getPassword()},
-                    new RowMapper<Admin>() {
-                @Override
-                public Admin mapRow(ResultSet rs, int rowNum) throws SQLException {
-                    return new Admin(rs.getInt(1), rs.getString(2), rs.getString(3));
-                }
-            });
-            return datos.isEmpty() == true ?
-                    new ModelAndView("index").addObject("admin", new Admin()) ://.addObject("error", "Usuario incorrecto"):
-                    new ModelAndView("main");
+            
+            return new ModelAndView("main");
         }
-
-        //return "main";
     }
-
 }

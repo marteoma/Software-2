@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.software2.mrcheese.despachador.models;
+package com.software2.mrcheese.despachador.conexiones;
 
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 

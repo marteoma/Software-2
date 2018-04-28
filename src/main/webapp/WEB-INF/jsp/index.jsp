@@ -14,7 +14,7 @@
             <jsp:include page="/fragments/header.htm" />                            
             <main class="content">
                 <div>
-                    <form:form method="post" commandName="admin">
+                    <form:form method="post" class="form-login" commandName="admin">
                         <form:errors path="*" element="div"/>
                         <form:input path="email"/>
                         <form:input path="password" type="password"/>
