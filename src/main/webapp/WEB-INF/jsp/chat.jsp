@@ -18,12 +18,13 @@
         <div class="container">
             <jsp:include page="/fragments/header.htm"/>
             <jsp:include page="/fragments/nav.htm"/>
+            
             <main class="content" id="content">               
                 <div class="destinatarios">
                     <div class="group">
                         <h2>Clientes</h2>
                         <c:forEach items="${clientes}" var="c">
-                            <div class="destinario">
+                            <div onclick="openChat('cliente', ${c.id_cliente})" class="destinario">
                                 <c:out value="${c.nombre_cliente}"></c:out>
                                 <c:out value=" "></c:out>
                                 <c:out value="${c.apellido}"></c:out>
@@ -33,14 +34,15 @@
                     <div class="group">
                         <h2>Mensajeros</h2>
                         <c:forEach items="${mensajeros}" var="c">
-                            <div onclick="openChat(${c.id_mensajero})" class="destinario">
+                            <div onclick="openChat('mensajero', ${c.id_mensajero})" class="destinario">
                                 <c:out value="${c.nombre_mensajero}"></c:out>
                                 <c:out value=" "></c:out>
                                 <c:out value="${c.apellido}"></c:out>                                
                                 </div>
                         </c:forEach>
                     </div>
-                </div>                                   
+                </div>
+                
             </main>
         </div>
         <script src="<c:url value="/src/js/chat.js"/>"></script>            
