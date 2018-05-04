@@ -1,9 +1,10 @@
 @import url('https://fonts.googleapis.com/css?family=Oldenburg');
 
 * {
-  margin: 0  ;
-  text-decoration: none;
-  color: black;
+    margin: 0;
+    text-decoration: none;
+    color: black;
+    box-sizing: border-box;
 }
 
 body {
@@ -11,21 +12,21 @@ body {
 }
 
 .container {
-  height: 100% !important;
-  width: 100% !important; 
-  margin-left: 0 !important;
-  
+    height: 100% !important;
+    width: 100% !important; 
+    margin-left: 0 !important;
+
 }
 
 header {
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important ;
-  height: 15% !important;
-  background: #BF3838 ;
-  color: black;
-  font-size: 25pt !important;
-  font-family: 'Oldenburg', cursive, sans-serif !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important ;
+    height: 15% !important;
+    background: #BF3838 ;
+    color: black;
+    font-size: 25pt !important;
+    font-family: 'Oldenburg', cursive, sans-serif !important;
 }
 
 .content {
@@ -34,14 +35,14 @@ header {
     display: flex;
     height: 78%;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;    
 }
 
 .form-login {
-  background: #D0CECE;
-  height: 30em;
-  width: 20em !important;
-  border-radius: 1em !important;
+    background: #D0CECE;
+    height: 30em;
+    width: 20em !important;
+    border-radius: 1em !important;
 }
 
 .options {
@@ -60,24 +61,5 @@ header {
 }
 a{
     color: black !important;
- 
-}
 
-#admin {
-    background: #D0CECE;
-    height: 30em;
-    width: 20em;
-    border-radius: 1em;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center
-}
-#password, #email, #admin-submit {
-    width: 80%;
-    height: 4em;
-    color: black;
-    display: flex;
-    justify-content: center;
-    align-items: center;        
 }

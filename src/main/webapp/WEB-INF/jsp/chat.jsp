@@ -5,8 +5,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Welcome to Spring Web MVC project</title>
-        <link rel="stylesheet" href="<c:url value="/src/css/main.css"/>">
+        <title>Welcome to Spring Web MVC project</title>        
         <link rel="stylesheet" href="<c:url value="/src/css/chat.css"/>">
 
         <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase.js"></script>
@@ -43,6 +42,9 @@
                     </div>
                 </div>
                 
+                
+                    
+                                    
             </main>
         </div>
         <script src="<c:url value="/src/js/chat.js"/>"></script>            

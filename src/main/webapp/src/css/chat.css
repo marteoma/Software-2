@@ -1,3 +1,59 @@
+@import url('https://fonts.googleapis.com/css?family=Oldenburg');
+
+*{
+    box-sizing: border-box;
+    margin: 0  ;
+    text-decoration: none;
+    color: black;
+    font-family: 'Oldenburg', cursive, sans-serif;
+}
+
+
+body {
+    height: 100vh;
+}
+
+.container {
+    height: 100% !important;
+    width: 100% !important; 
+    margin-left: 0 !important;
+}
+
+header {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important ;
+    height: 15% !important;
+    background: #BF3838 ;
+    color: black;
+    font-size: 25pt !important;
+    font-family: 'Oldenburg', cursive, sans-serif !important;
+}
+
+.content {
+    padding: 8px 20px;
+    background: #E6E6E6;
+    display: flex;
+    height: 78%;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+.options {
+    display: flex;
+    height: 8% !important;
+    background: gray;
+    flex-direction: row !important;    
+    color: black;
+    justify-content: space-around !important;
+    align-items: center !important;
+}
+
+.options a:hover {
+    text-decoration: underline;
+}
+
 .destinatarios {        
     height: 100%;
     width: 200px;
@@ -7,4 +63,49 @@
 
 .destinario{
     cursor: pointer;
+}
+
+.chat {
+    border: 1px black solid;
+    width: 300px;
+    height: 100%;
+    padding: 10px;
+    margin: 10px;
+}
+
+.close {
+    cursor: pointer;
+    position: relative;
+    width: 1.2em;
+    height: 1.2em;
+    background: #BF3838;
+    margin: 5px;
+    padding: 2px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.close:hover{
+    background: #BF3880;
+}
+
+.form-message {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.sender-1 {
+    text-align:  left;
+}
+
+.sender-2 {
+    text-align:  right;
+}
+
+.message {
+    font-size: 11pt;
+    font-family: 'Calibri', sans-serif;
+    margin: 10px;
 }

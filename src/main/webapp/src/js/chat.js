@@ -22,8 +22,8 @@ function openChat(rol, id) {
                                     <div class="historical" id="${rol}-historial-${id}"></div>
 
                                     <form class="form-message">
-                                        <input type="text" id="mensaje" required>
-                                        <input type="submit" id="${id}" value="enviar"> 
+                                            <input type="text" id="mensaje" required>
+                                            <input type="submit" id="${id}" value="enviar"> 
                                     </form>
                                 </div>`;
 
@@ -43,11 +43,12 @@ function openChat(rol, id) {
         //SUBMIT mssage
         document.getElementById(id).addEventListener("click", () => {
             //SUBE LOS DATOS        
-            let postKey = database.ref().child('mensajes').push().key;
+            //let postKey = database.ref().child('mensajes').push().key;
+            let postKey = new Date().toLocaleString().replace("/", "-").replace("/", "-")
             let ups = {};
             ups[path + postKey] = {
                 mensaje: document.getElementById('mensaje').value,
-                fecha: new Date().toLocaleString(),
+                //fecha: new Date().toLocaleString(),
                 sender: 1
             };
             database.ref().update(ups);
