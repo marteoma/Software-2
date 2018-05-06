@@ -31,21 +31,21 @@
 
                             <p>
                                 <form:label path="contenido">Contenido</form:label>
-                                <form:label path="contenido" cssClass="form-control" disabled="true"></form:label>
+                                <form:input path="contenido" cssClass="form-control" disabled="true"></form:input>
                                 </p>
 
                                 <p>
                                 <form:label path="estado">Estado</form:label>
-                                <form:label path="estado" cssClass="form-control" disabled="true"></form:label>
+                                <form:input path="estado" cssClass="form-control" disabled="true"></form:input>
                                 </p>
                                 <p>
                                 <form:label path="mensajero">Mensajero</form:label>
-                                <form:label path="mensajero" cssClass="form-control" disabled="true"></form:label>
+                                <form:input path="mensajero" cssClass="form-control" disabled="true"></form:input>
                                 </p>
 
                                 <p>
                                 <form:label path="cliente">Cliente</form:label>
-                                <form:label path="cliente" cssClass="form-control" disabled="true"></form:label>
+                                <form:input path="cliente" cssClass="form-control" disabled="true"></form:input>
                                 </p>
 
                                 <input type="submit" value="Eliminar" class="btn btn-danger"/>

@@ -77,7 +77,7 @@ public class EditController {
 "	WHERE id =?;", id,m.getNombre_mensajero(), m.getApellido(), m.getPlaca(), id);
         return new ModelAndView("redirect:/mensajeros.htm");
         }else{
-        int id = Integer.parseInt(request.getParameter("id"));
+        int id = Integer.parseInt (request.getParameter("id"));
         this.jdbcTemplate.update("UPDATE public.pedido\n"
                 + "	SET contenido=?, estado=?, mensajero=?, cliente=?\n"
                 + "	WHERE id_pedido =?;", u.getContenido(), u.getEstado(), u.getMensajero(), u.getCliente(), id);
