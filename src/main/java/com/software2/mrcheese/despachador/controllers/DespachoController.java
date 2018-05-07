@@ -8,15 +8,21 @@ package com.software2.mrcheese.despachador.controllers;
 import com.software2.mrcheese.despachador.conexiones.Conectar;
 import com.software2.mrcheese.despachador.models.Mensajero;
 import com.software2.mrcheese.despachador.models.Pedido;
+import com.software2.mrcheese.despachador.models.Despacho;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
@@ -27,11 +33,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class DespachoController {
 
     private JdbcTemplate jdbcTemplate;
-    // estos atributos son para probar la consulta por eso estan definidos de una vez
-    // nombre del mensajero
-    private String mensajero = "default";
-    //id del pedido al cual se le hara el update
-    private int pedido = 4;
+
 
     public DespachoController() {
         Conectar con = new Conectar();
@@ -48,8 +50,7 @@ public class DespachoController {
 
         mav.addObject("mensajeros", mensajeros);
         mav.addObject("pedidos", pedidos);
-        mav.addObject("pedido", pedido);
-        mav.addObject("mensajero", mensajero);
+        mav.addObject("Despacho", new Despacho());
         mav.setViewName("despachos");
         return mav;
 
@@ -70,7 +71,7 @@ public class DespachoController {
     }
 
     public List<Pedido> pedido() {
-        String pedidosQuery = "SELECT contenido, estado, id_pedido, mensajero, cliente\n"
+        String pedidosQuery = "SELECT contenido, estado, id_pedido, mensajero, cliente"
                 + "	FROM public.pedido WHERE mensajero is null ;";
         List<Pedido> cs = jdbcTemplate.query(pedidosQuery,
                 new Object[]{},
@@ -83,32 +84,16 @@ public class DespachoController {
         });
         return cs;
     }
-
+    
     @RequestMapping(method = RequestMethod.POST)
-    public ModelAndView form() {
-
-        this.jdbcTemplate.update("UPDATE public.pedido\n"
-                + "	SET mensajero=?\n"
-                + "	WHERE id_pedido =?;", mensajero, pedido);
+    public ModelAndView form(@ModelAttribute Despacho despacho) {        
+        int pedido = despacho.getPedido();
+        String mensajero = despacho.getMensajero();
+        this.jdbcTemplate.update("UPDATE public.pedido"
+                + "	SET mensajero = ?"
+                + "	WHERE id_pedido = ?;", mensajero, pedido);
         return new ModelAndView("redirect:/pedidos.htm");
-
-    }
-
-    /**
-     * @param aMensajero the mensajero to set
-     */
-    @ModelAttribute("mensajero")
-    public void setMensajero(String aMensajero) {
-        mensajero = aMensajero;
-    }
-
-    /**
-     * @param u
-     *
-     *
-     */
-    public void setPedido(int u) {
-        pedido = u;
-    }
-
+    }        
 }
+
+

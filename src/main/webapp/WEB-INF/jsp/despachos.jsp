@@ -8,6 +8,7 @@
         <title>Welcome to Spring Web MVC project</title>
         <link rel="stylesheet" href="<c:url value="/src/css/main.css"/>">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
     </head>
 
@@ -39,7 +40,9 @@
                                     <td><c:out value="${dato.mensajero}"/></td>
                                     <td><c:out value="${dato.cliente}"/></td>
                                     <td>
-                                        <button  onclick=""><span class="glyphicon glyphicon-ok" aria-hidden="false"></span></button>
+                                        <button onclick="catchPedido(<c:out value="${dato.id_pedido}"/>)">
+                                            <span class="glyphicon glyphicon-ok" aria-hidden="false"/>
+                                        </button>
                                     </td>
                                 </tr>
                             </c:forEach>
@@ -68,19 +71,25 @@
                                     <td><c:out value="${dato.apellido}"/></td>
                                     <td><c:out value="${dato.placa}"/></td>
                                     <td>
-                                        <button  onclick="${despachoController.setMensajero(dato.nombre_mensajero)}"><span class="glyphicon glyphicon-ok" aria-hidden="false"></span></button>
+                                        <button onclick="catchMensajero(<c:out value="${dato.id_mensajero}"/>)">
+                                            <span class="glyphicon glyphicon-ok" aria-hidden="false"></span>
+                                        </button>
                                     </td>
                                 </tr>
                             </c:forEach>
                         </tbody>
                     </table>
                 </div>
-                <form:form method="post" commandName="Pedido">
-                    <input type="submit" value="Despachar" class="btn btn-danger"/>   
+                <form:form method="POST" commandName="Despacho">
+                    <form:input id="catchPedido" value="-1" path="pedido" cssClass="noShow"></form:input>
+                    <form:input id="catchMensajero" value="-1" path="mensajero" cssClass="noShow"></form:input>
+
+                    <input id="despachar" type="submit" value="Despachar" class="btn btn-danger"/>   
                 </form:form>
 
 
             </main>      
-        </div> 
+        </div>
+        <script src="<c:url value="/src/js/despacho.js"/>"></script>
     </body>
 </html>

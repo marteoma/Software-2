@@ -32,8 +32,7 @@ public class AddController {
         Conectar con = new Conectar();
         this.jdbcTemplate = new JdbcTemplate(con.conectar());
     }
-    
-    
+
     @RequestMapping(method = RequestMethod.GET)
     public ModelAndView form() {
         ModelAndView mav = new ModelAndView();
@@ -41,7 +40,7 @@ public class AddController {
         mav.addObject("Mensajero", new Mensajero());
         return mav;
     }
-    
+
     @RequestMapping(method = RequestMethod.POST)
     public ModelAndView form(
             @ModelAttribute("Mensajero") Mensajero u,
@@ -49,10 +48,9 @@ public class AddController {
             SessionStatus status,
             HttpServletRequest request
     ) {
-       
-        this.jdbcTemplate.update("INSERT INTO public.\"Mensajero\"(\n" +
-"	 name, lastname, plate)\n" +
-"	VALUES ( ?, ?, ?);", u.getNombre_mensajero(), u.getApellido(), u.getPlaca());
+        this.jdbcTemplate.update("INSERT INTO public.\"Mensajero\"(\n"
+                + "	 name, lastname, plate)\n"
+                + "	VALUES ( ?, ?, ?);", u.getNombre_mensajero(), u.getApellido(), u.getPlaca());
         return new ModelAndView("redirect:/mensajeros.htm");
     }
 }

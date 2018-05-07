@@ -30,41 +30,42 @@ import org.springframework.web.servlet.ModelAndView;
  */
 @Controller
 public class AdminController {
-    static private String mensajero= "default";
-    static private int pedido = 4 ;
+
+    static private String mensajero = "default";
+    static private int pedido = 4;
     private JdbcTemplate jdbcTemplate;
-    
-    public AdminController(){
+
+    public AdminController() {
         Conectar con = new Conectar();
         this.jdbcTemplate = new JdbcTemplate(con.conectar());
     }
+
     @RequestMapping("mensajeros.htm")
-    public ModelAndView mensajeros(){
+    public ModelAndView mensajeros() {
         ModelAndView mav = new ModelAndView();
-        String sql= "SELECT id, name, lastname, plate\n" +
-"	FROM public.\"Mensajero\"\n" +
-"	ORDER BY id ASC";
-        List datos = this.jdbcTemplate.queryForList(sql); 
+        String sql = "SELECT id, name, lastname, plate\n"
+                + "	FROM public.\"Mensajero\"\n"
+                + "	ORDER BY id ASC";
+        List datos = this.jdbcTemplate.queryForList(sql);
         mav.addObject("datos", datos);
         mav.setViewName("mensajeros");
-        return  mav;
+        return mav;
     }
-    
+
     @RequestMapping("pedidos.htm")
-    public ModelAndView pedidos(){
+    public ModelAndView pedidos() {
         ModelAndView mav = new ModelAndView();
-        String sql= "SELECT * FROM public.pedido ORDER BY id_pedido ASC ";
-        List datos = this.jdbcTemplate.queryForList(sql); 
+        String sql = "SELECT * FROM public.pedido ORDER BY id_pedido ASC ";
+        List datos = this.jdbcTemplate.queryForList(sql);
         mav.addObject("datos", datos);
         mav.setViewName("pedidos");
-        return  mav;
-        
+        return mav;
+
     }
-  
-    
+
     @RequestMapping("despachos.htm")
-    public ModelAndView despachos(){
-     /*
+    public ModelAndView despachos() {
+        /*
         ModelAndView mav = new ModelAndView();
         String sql= "SELECT id, name, lastname, plate\n" +
 "	FROM public.\"Mensajero\"\n" +
@@ -80,9 +81,8 @@ public class AdminController {
         mav.addObject("mensajero",mensajero);
         mav.setViewName("despachos");
         return mav;
-       */
-           return new ModelAndView();
-    }       
-    
-}
+         */
+        return new ModelAndView();
+    }
 
+}
