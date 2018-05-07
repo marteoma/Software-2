@@ -21,7 +21,7 @@
             <props>
                 <prop key="chat.htm">chatController</prop>
                 <prop key="mensajeros.htm">adminController</prop>
-                <prop key="despachos.htm">adminController</prop>
+                <prop key="despachos.htm">DespachoController</prop>
                 <prop key="pedidos.htm">adminController</prop>                
                 <prop key="fragments/header.htm">fragmentsController</prop>
                 <prop key="fragments/nav.htm">fragmentsController</prop>
@@ -64,5 +64,8 @@
     
     <bean name="AddController"
           class="com.software2.mrcheese.despachador.controllers.AddController" />
+    
+    <bean name="DespachoController"
+          class="com.software2.mrcheese.despachador.controllers.DespachoController" />
     
 </beans>
