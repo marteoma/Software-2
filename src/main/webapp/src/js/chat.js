@@ -11,13 +11,14 @@ let defaultApp = firebase.initializeApp(config);
 let database = defaultApp.database();
 
 
-function openChat(rol, id) {
+function openChat(rol, id, name) {
     let newId = rol + '-' + id;
     if (document.getElementById(newId) === null) {
         let path = '/mensajes/' + rol + '/' + id + '/';
         document.getElementById('content')
                 .innerHTML += `<div class="chat" id="${newId}">
-                                    <div class="close" onclick="closeListener(event)">X</div>  
+                                    <div class="close" onclick="closeListener(event)">X</div>
+                                    <h1>${name}</h1>
 
                                     <div class="historical" id="${rol}-historial-${id}"></div>
 

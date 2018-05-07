@@ -23,7 +23,8 @@
                     <div class="group">
                         <h2>Clientes</h2>
                         <c:forEach items="${clientes}" var="c">
-                            <div onclick="openChat('cliente', ${c.id_cliente})" class="destinario">
+                            <div onclick="openChat('cliente', ${c.id_cliente}, '${c.nombre_cliente} ${c.apellido}')"
+                                 class="destinario">
                                 <c:out value="${c.nombre_cliente}"></c:out>
                                 <c:out value=" "></c:out>
                                 <c:out value="${c.apellido}"></c:out>
@@ -33,7 +34,8 @@
                     <div class="group">
                         <h2>Mensajeros</h2>
                         <c:forEach items="${mensajeros}" var="c">
-                            <div onclick="openChat('mensajero', ${c.id_mensajero})" class="destinario">
+                            <div onclick="openChat('mensajero', ${c.id_mensajero}, '${c.nombre_mensajero} ${c.apellido}')" 
+                                 class="destinario">
                                 <c:out value="${c.nombre_mensajero}"></c:out>
                                 <c:out value=" "></c:out>
                                 <c:out value="${c.apellido}"></c:out>                                
