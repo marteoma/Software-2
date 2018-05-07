@@ -1,6 +1,6 @@
 <%-- 
-    Document   : delete
-    Created on : 25/04/2018, 05:45:22 AM
+    Document   : deleteM
+    Created on : 27/04/2018, 03:43:45 PM
     Author     : Carlos Asprilla
 --%>
 
@@ -8,6 +8,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="url" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -26,35 +27,26 @@
                         <div class="panel-heading" v>Formulario de Eliminacion</div>
                         <div class="panel-body">
 
-                        <form:form method="post" commandName="Pedido">
+                        <form:form method="post" commandName="Mensajero">
 
 
                             <p>
-                                <form:label path="contenido">Contenido</form:label>
-                                <form:label path="contenido" cssClass="form-control" disabled="true"></form:label>
+                                <form:label path="nombre_mensajero">Nombre</form:label>
+                                <form:input path="nombre_mensajero" cssClass="form-control"  disabled="true"></form:input>
+                                </p>
+                                <p>
+                                <form:label path="apellido">Apellido</form:label>
+                                <form:input path="apellido" cssClass="form-control"  disabled="true" ></form:input>
                                 </p>
 
                                 <p>
-                                <form:label path="estado">Estado</form:label>
-                                <form:label path="estado" cssClass="form-control" disabled="true"></form:label>
-                                </p>
-                                <p>
-                                <form:label path="mensajero">Mensajero</form:label>
-                                <form:label path="mensajero" cssClass="form-control" disabled="true"></form:label>
-                                </p>
-
-                                <p>
-                                <form:label path="cliente">Cliente</form:label>
-                                <form:label path="cliente" cssClass="form-control" disabled="true"></form:label>
+                                <form:label path="placa">Placa</form:label>
+                                <form:input path="placa" cssClass="form-control"  disabled="true" ></form:input>
                                 </p>
 
                                 <input type="submit" value="Eliminar" class="btn btn-danger"/>
                         </form:form>
-
-                    </div>
-
-
-
+                    </div>   
                 </div>
 
             </main>

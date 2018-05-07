@@ -6,6 +6,7 @@
 package com.software2.mrcheese.despachador.controllers;
 
 import com.software2.mrcheese.despachador.conexiones.Conectar;
+import com.software2.mrcheese.despachador.models.Mensajero;
 import com.software2.mrcheese.despachador.models.Pedido;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -37,28 +38,51 @@ public class DeleteController {
 
     @RequestMapping(method = RequestMethod.GET)
     public ModelAndView form(HttpServletRequest request) {
-        ModelAndView mav = new ModelAndView();
-        int id = Integer.parseInt(request.getParameter("id"));
+          ModelAndView mav = new ModelAndView();
+        String type = request.getParameter("type");
+        if(type.equalsIgnoreCase("Mensajero")){
+            int id = Integer.parseInt(request.getParameter("id"));
 
+        Mensajero datos = this.selectMensajero(id);
+        mav.setViewName("deleteM");
+        Mensajero M = new Mensajero(datos.getApellido(), datos.getNombre_mensajero(),String.valueOf(id) , datos.getPlaca());
+        mav.addObject("Mensajero", M);
+        return mav;
+        }else{
+        int id = Integer.parseInt(request.getParameter("id"));
         Pedido datos = this.selectPedido(id);
-        mav.setViewName("edit");
+        mav.setViewName("delete");
         Pedido pedi = new Pedido(id, datos.getContenido(), datos.getEstado(), datos.getMensajero(), datos.getCliente());
         mav.addObject("Pedido", pedi);
         return mav;
-
+     
+        }
+     
     }
 
     @RequestMapping(method = RequestMethod.POST)
     public ModelAndView form(
             @ModelAttribute("Pedido") Pedido u,
+             @ModelAttribute("Mensajero") Mensajero m,
             BindingResult result,
             SessionStatus status,
             HttpServletRequest request
     ) {
+         String type = request.getParameter("type");
+        if(type.equalsIgnoreCase("Mensajero")){
+            int id = Integer.parseInt(request.getParameter("id"));
+        this.jdbcTemplate.update("DELETE FROM public.\"Mensajero\"\n" +
+"	WHERE id =?;", id);
+        return new ModelAndView("redirect:/mensajeros.htm");
+            
+        }else{
         int id = Integer.parseInt(request.getParameter("id"));
         this.jdbcTemplate.update("DELETE FROM public.pedido\n"
                 + "	WHERE id_pedido=?;", id);
-        return new ModelAndView("redirect:/pedidos.htm");
+        return new ModelAndView("redirect:/pedidos.htm");    
+        }
+        
+        
     }
 
     public Pedido selectPedido(int id) {
@@ -76,6 +100,26 @@ public class DeleteController {
                     pedido.setMensajero(rs.getString("mensajero"));
                 }
                 return pedido;
+            }
+
+        });
+    }
+    public Mensajero selectMensajero(int id) {
+        final Mensajero M = new Mensajero();
+        String query = "SELECT id, name, lastname, plate\n" +
+"	FROM public.\"Mensajero\"\n" +
+"	WHERE id= '" + id + "'";
+        return (Mensajero) jdbcTemplate.query(query, new ResultSetExtractor<Mensajero>() {
+            @Override
+            public Mensajero extractData(ResultSet rs) throws SQLException, DataAccessException {
+
+                if (rs.next()) {
+                    M.setNombre_mensajero(rs.getString("name"));
+                    M.setApellido(rs.getString("lastname"));
+                    M.setPlaca(rs.getString("plate"));
+                    
+                }
+                return M;
             }
 
         });

@@ -29,7 +29,14 @@ public class AdminController {
     }
     @RequestMapping("mensajeros.htm")
     public ModelAndView mensajeros(){
-        return new ModelAndView();
+        ModelAndView mav = new ModelAndView();
+        String sql= "SELECT id, name, lastname, plate\n" +
+"	FROM public.\"Mensajero\"\n" +
+"	ORDER BY id ASC";
+        List datos = this.jdbcTemplate.queryForList(sql); 
+        mav.addObject("datos", datos);
+        mav.setViewName("mensajeros");
+        return  mav;
     }
     
     @RequestMapping("pedidos.htm")

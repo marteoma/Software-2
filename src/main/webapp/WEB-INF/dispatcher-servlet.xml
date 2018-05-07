@@ -29,6 +29,9 @@
                 <prop key="main.htm">loginController</prop>
                 <prop key="edit.htm">EditController</prop>
                 <prop key="delete.htm">DeleteController</prop>
+                <prop key="add.htm">AddController</prop>
+                <prop key="editM.htm">EditController</prop>
+                <prop key="deleteM.htm">DeleteController</prop>
             </props>
         </property>
     </bean>
@@ -58,4 +61,8 @@
     
     <bean name="chatController"
           class="com.software2.mrcheese.despachador.controllers.ChatController" />
+    
+    <bean name="AddController"
+          class="com.software2.mrcheese.despachador.controllers.AddController" />
+    
 </beans>
