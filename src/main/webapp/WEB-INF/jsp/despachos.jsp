@@ -16,7 +16,7 @@
             <jsp:include page="/fragments/header.htm"></jsp:include>
             <jsp:include page="/fragments/nav.htm"></jsp:include>
                 <main class="content">
-               
+
                     <div>
                         <h1>Pedidos sin Asignacion</h1>
                         <table class="table table-bordered table-striped table-hover">
@@ -75,11 +75,11 @@
                         </tbody>
                     </table>
                 </div>
-                     <form:form method="post" commandName="Pedido">
+                <form:form method="post" commandName="Pedido">
                     <input type="submit" value="Despachar" class="btn btn-danger"/>   
-                    </form:form>
-                    
-                
+                </form:form>
+
+
             </main>      
         </div> 
     </body>

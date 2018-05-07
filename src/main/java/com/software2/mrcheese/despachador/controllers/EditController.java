@@ -40,55 +40,54 @@ public class EditController {
     public ModelAndView form(HttpServletRequest request) {
         ModelAndView mav = new ModelAndView();
         String type = request.getParameter("type");
-        if(type.equalsIgnoreCase("Mensajero")){
+        if (type.equalsIgnoreCase("Mensajero")) {
             int id = Integer.parseInt(request.getParameter("id"));
 
-        Mensajero datos = this.selectMensajero(id);
-        mav.setViewName("editM");
-        Mensajero M = new Mensajero(datos.getApellido(), datos.getNombre_mensajero(),String.valueOf(id) , datos.getPlaca());
-        mav.addObject("Mensajero", M);
-        return mav;
-        }else{
-        int id = Integer.parseInt(request.getParameter("id"));
-        Pedido datos = this.selectPedido(id);
-        mav.setViewName("edit");
-        Pedido pedi = new Pedido(id, datos.getContenido(), datos.getEstado(), datos.getMensajero(), datos.getCliente());
-        mav.addObject("Pedido", pedi);
-        return mav;
-     
+            Mensajero datos = this.selectMensajero(id);
+            mav.setViewName("editM");
+            Mensajero M = new Mensajero(datos.getApellido(), datos.getNombre_mensajero(), String.valueOf(id), datos.getPlaca());
+            mav.addObject("Mensajero", M);
+            return mav;
+        } else {
+            int id = Integer.parseInt(request.getParameter("id"));
+            Pedido datos = this.selectPedido(id);
+            mav.setViewName("edit");
+            Pedido pedi = new Pedido(id, datos.getContenido(), datos.getEstado(), datos.getMensajero(), datos.getCliente());
+            mav.addObject("Pedido", pedi);
+            return mav;
+
         }
-        
-       
+
     }
 
     @RequestMapping(method = RequestMethod.POST)
     public ModelAndView form(
             @ModelAttribute("Pedido") Pedido u,
-            @ModelAttribute("Mensajero") Mensajero m ,
+            @ModelAttribute("Mensajero") Mensajero m,
             BindingResult result,
             SessionStatus status,
             HttpServletRequest request
     ) {
         String type = request.getParameter("type");
-        if(type.equalsIgnoreCase("Mensajero")){
+        if (type.equalsIgnoreCase("Mensajero")) {
             int id = Integer.parseInt(request.getParameter("id"));
-        this.jdbcTemplate.update("UPDATE public.\"Mensajero\"\n" +
-"	SET id=?, name=?, lastname=?, plate=?\n" +
-"	WHERE id =?;", id,m.getNombre_mensajero(), m.getApellido(), m.getPlaca(), id);
-        return new ModelAndView("redirect:/mensajeros.htm");
-        }else{
-        int id = Integer.parseInt (request.getParameter("id"));
-        this.jdbcTemplate.update("UPDATE public.pedido\n"
-                + "	SET contenido=?, estado=?, mensajero=?, cliente=?\n"
-                + "	WHERE id_pedido =?;", u.getContenido(), u.getEstado(), u.getMensajero(), u.getCliente(), id);
-        return new ModelAndView("redirect:/pedidos.htm");    
+            this.jdbcTemplate.update("UPDATE public.\"Mensajero\""
+                    + "	SET id=?, name=?, lastname=?, plate=?"
+                    + "	WHERE id =?;", id, m.getNombre_mensajero(), m.getApellido(), m.getPlaca(), id);
+            return new ModelAndView("redirect:/mensajeros.htm");
+        } else {
+            int id = Integer.parseInt(request.getParameter("id"));
+            this.jdbcTemplate.update("UPDATE public.pedido"
+                    + "	SET contenido=?, estado=?, mensajero=?, cliente=?"
+                    + "	WHERE id_pedido =?;", u.getContenido(), u.getEstado(), u.getMensajero(), u.getCliente(), id);
+            return new ModelAndView("redirect:/pedidos.htm");
         }
-        
+
     }
 
     public Pedido selectPedido(int id) {
         final Pedido pedido = new Pedido();
-        String query = "SELECT contenido, estado, id_pedido, mensajero, cliente\n"
+        String query = "SELECT contenido, estado, id_pedido, mensajero, cliente"
                 + "	FROM public.pedido WHERE id_pedido ='" + id + "'";
         return (Pedido) jdbcTemplate.query(query, new ResultSetExtractor<Pedido>() {
             @Override
@@ -105,12 +104,12 @@ public class EditController {
 
         });
     }
-    
+
     public Mensajero selectMensajero(int id) {
         final Mensajero M = new Mensajero();
-        String query = "SELECT id, name, lastname, plate\n" +
-"	FROM public.\"Mensajero\"\n" +
-"	WHERE id= '" + id + "'";
+        String query = "SELECT id, name, lastname, plate"
+                + "	FROM public.\"Mensajero\""
+                + "	WHERE id= '" + id + "'";
         return (Mensajero) jdbcTemplate.query(query, new ResultSetExtractor<Mensajero>() {
             @Override
             public Mensajero extractData(ResultSet rs) throws SQLException, DataAccessException {
@@ -119,7 +118,7 @@ public class EditController {
                     M.setNombre_mensajero(rs.getString("name"));
                     M.setApellido(rs.getString("lastname"));
                     M.setPlaca(rs.getString("plate"));
-                    
+
                 }
                 return M;
             }
