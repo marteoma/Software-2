@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Oldenburg');
 
 * {
-    margin: 0;
+    margin: 0!important ;
     text-decoration: none;
     color: black;
     box-sizing: border-box;
@@ -9,12 +9,14 @@
 
 body {
     height: 100vh;
+    width: 95% !important;
+    
 }
 
 .container {
     height: 100% !important;
-    width: 100% !important; 
-    margin-left: 0 !important;
+    width: 95% !important; 
+   
 
 }
 
@@ -27,17 +29,28 @@ header {
     color: black;
     font-size: 25pt !important;
     font-family: 'Oldenburg', cursive, sans-serif !important;
+    width: 113% !important;
 }
 
 .content {
     padding: 2px 20px;
     background: #E6E6E6;
-    display: flex;
+    display: flex-box!important;
     height: 78%;
     align-items: center;
-    justify-content: center;    
+    justify-content: center;   
+   vertical-align: top;
+   width: 113% !important;
+  
 }
-
+#btn-add{
+   position: relative;
+}
+#tabla-mensajeros{
+   
+    
+   
+}
 .form-login {
     background: #D0CECE;
     height: 30em;
@@ -54,6 +67,7 @@ header {
     color: black;
     justify-content: space-around !important;
     align-items: center !important;
+    width: 113% !important;
 }
 
 .options a:hover {

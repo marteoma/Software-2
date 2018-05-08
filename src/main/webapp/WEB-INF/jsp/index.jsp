@@ -16,8 +16,8 @@
                 <div>
                     <form:form method="post" class="form-login" commandName="admin">
                         <form:errors path="*" element="div"/>
-                        <form:input path="email"/>
-                        <form:input path="password" type="password"/>
+                        <form:input path="email" placeholder="Correo Electronico"/>
+                        <form:input path="password" placeholder="Password" type="password"/>
                         <form:button id="admin-submit">Enviar</form:button>
                     </form:form>
                 </div>       

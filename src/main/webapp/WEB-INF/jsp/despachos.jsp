@@ -21,8 +21,8 @@
                     <div>
                         <h1>Pedidos sin Asignacion</h1>
                         <table class="table table-bordered table-striped table-hover">
-                            <thead>
-                                <tr>
+                            <thead class="thead-dark table">
+                                <tr class="table-dark">
                                     <th>Contenido</th>
                                     <th>Estado</th>
                                     <th>ID</th>
@@ -33,7 +33,7 @@
                             </thead>
                             <tbody>
                             <c:forEach items="${pedidos}" var="dato">
-                                <tr>
+                                <tr class="bg-warning">
                                     <td><c:out value="${dato.contenido}"/></td>
                                     <td><c:out value="${dato.estado}"/></td>
                                     <td><c:out value="${dato.id_pedido}"/></td>
@@ -54,8 +54,8 @@
                 <div>
                     <h1>Mensajeros</h1>
                     <table class="table table-bordered table-striped table-hover">
-                        <thead>
-                            <tr>
+                        <thead class="thead-dark table">
+                            <tr class="table-dark">
                                 <th>ID</th>
                                 <th>Nombre</th>
                                 <th>Apellido</th>
@@ -65,7 +65,7 @@
                         </thead>
                         <tbody>
                             <c:forEach items="${mensajeros}" var="dato">
-                                <tr>
+                                <tr class="bg-warning">
                                     <td><c:out value="${dato.id_mensajero}"/></td>
                                     <td><c:out value="${dato.nombre_mensajero}"/></td>
                                     <td><c:out value="${dato.apellido}"/></td>

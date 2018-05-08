@@ -41,8 +41,9 @@ header {
 .form-login {
   background: #D0CECE;
   height: 30em;
-  width: 20em !important;
+  width: 25em !important;
   border-radius: 1em !important;
+  
 }
 
 
@@ -56,11 +57,22 @@ header {
     justify-content: space-around;
     align-items: center
 }
-#password, #email, #admin-submit {
+#password, #email  {
     width: 80%;
     height: 4em;
     color: black;
     display: flex;
     justify-content: center;
     text-align: center;
+     border-radius: 5em;
+}
+#admin-submit{
+    width: 350px;
+   height: 40px;
+   border-radius: 5em;
+   background:#BF3838;
+  font-size: 1.1em;
+}
+#admin-submit:hover{
+    background:#FFFAF0;
 }

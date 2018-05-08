@@ -23,7 +23,7 @@
             <jsp:include page="/fragments/nav.htm"></jsp:include>
                 <main class="content">
                     <div class="panel panel-primary">
-                        <div class="panel-heading" v>Formulario de Eliminacion</div>
+                        <div class="panel-heading" v>Formulario de Eliminacion de Pedidos</div>
                         <div class="panel-body">
 
                         <form:form method="post" commandName="Pedido">

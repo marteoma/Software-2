@@ -16,10 +16,10 @@
       <jsp:include page="/fragments/header.htm"></jsp:include>
       <jsp:include page="/fragments/nav.htm"></jsp:include>
       <main class="content">
-          
-      <table class="table table-bordered table-striped table-hover">
-          <thead>
-              <tr>
+          <h1>PEDIDOS ACTUALES</h1>
+      <table class="table table-striped table-light table-bordered  ">
+          <thead class="thead-dark table">
+              <tr class="table-dark ">
                   <th>Contenido</th>
                   <th>Estado</th>
                   <th>ID</th>
@@ -30,7 +30,7 @@
           </thead>
           <tbody>
           <c:forEach items="${datos}" var="dato">
-              <tr>
+              <tr class="bg-warning">
                   <td><c:out value="${dato.contenido}"/></td>
                   <td><c:out value="${dato.estado}"/></td>
                   <td><c:out value="${dato.id_pedido}"/></td>
