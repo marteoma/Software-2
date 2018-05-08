@@ -30,6 +30,7 @@
                 <prop key="edit.htm">EditController</prop>
                 <prop key="delete.htm">DeleteController</prop>
                 <prop key="add.htm">AddController</prop>
+                <prop key="addP.htm">AddController</prop>
                 <prop key="editM.htm">EditController</prop>
                 <prop key="deleteM.htm">DeleteController</prop>
             </props>

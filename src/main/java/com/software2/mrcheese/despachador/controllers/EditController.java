@@ -45,7 +45,10 @@ public class EditController {
 
             Mensajero datos = this.selectMensajero(id);
             mav.setViewName("editM");
-            Mensajero M = new Mensajero(datos.getApellido(), datos.getNombre_mensajero(), String.valueOf(id), datos.getPlaca());
+            String ids ="";
+            ids=Integer.toString(id);
+            Mensajero M = new Mensajero(datos.getApellido(), datos.getNombre_mensajero(),ids , datos.getPlaca());
+           
             mav.addObject("Mensajero", M);
             return mav;
         } else {
@@ -71,16 +74,29 @@ public class EditController {
         String type = request.getParameter("type");
         if (type.equalsIgnoreCase("Mensajero")) {
             int id = Integer.parseInt(request.getParameter("id"));
-            this.jdbcTemplate.update("UPDATE public.\"Mensajero\""
-                    + "	SET id=?, name=?, lastname=?, plate=?"
-                    + "	WHERE id =?;", id, m.getNombre_mensajero(), m.getApellido(), m.getPlaca(), id);
-            return new ModelAndView("redirect:/mensajeros.htm");
+            String ids ="";
+            ids=Integer.toString(id);
+            m.setId_mensajero(ids);
+            if (isNumeric(m.getNombre_mensajero())== true || isNumeric(m.getApellido()) == true || m.getPlaca().length() > 10) {
+                return new ModelAndView("redirect:/editM.htm");
+            } else {
+                this.jdbcTemplate.update("UPDATE public.\"Mensajero\""
+                        + "	SET id=?, name=?, lastname=?, plate=?"
+                        + "	WHERE id =?;", id, m.getNombre_mensajero(), m.getApellido(), m.getPlaca(), id);
+                return new ModelAndView("redirect:/mensajeros.htm");
+            }
+
         } else {
             int id = Integer.parseInt(request.getParameter("id"));
-            this.jdbcTemplate.update("UPDATE public.pedido"
-                    + "	SET contenido=?, estado=?, mensajero=?, cliente=?"
-                    + "	WHERE id_pedido =?;", u.getContenido(), u.getEstado(), u.getMensajero(), u.getCliente(), id);
-            return new ModelAndView("redirect:/pedidos.htm");
+            if (isNumeric(u.getCliente())== true|| isNumeric(u.getContenido())==true || isNumeric(u.getMensajero())==true || u.getEstado().length()> 20){ 
+                return new ModelAndView("redirect:/edit.htm");    
+            }else{
+                this.jdbcTemplate.update("UPDATE public.pedido"
+                        + "	SET contenido=?, estado=?, mensajero=?, cliente=?"
+                        + "	WHERE id_pedido =?;", u.getContenido(), u.getEstado(), u.getMensajero(), u.getCliente(), id);
+                return new ModelAndView("redirect:/pedidos.htm");
+
+            }
         }
 
     }
@@ -124,5 +140,14 @@ public class EditController {
             }
 
         });
+    }
+
+    private boolean isNumeric(String cadena) {
+        try {
+            Integer.parseInt(cadena);
+            return true;
+        } catch (NumberFormatException nfe) {
+            return false;
+        }
     }
 }

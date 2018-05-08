@@ -29,21 +29,21 @@
                       
                       <p>
                       <form:label path="contenido">Contenido</form:label>
-                      <form:input path="contenido" cssClass="form-control"></form:input>
+                      <form:input path="contenido" cssClass="form-control" required="required"  title="Solo letras ,Tamaño máximo: 50 caracteres"></form:input>
                       </p>
                       
                       <p>
                       <form:label path="estado">Estado</form:label>
-                      <form:input path="estado" cssClass="form-control"></form:input>
+                      <form:input path="estado" cssClass="form-control" required="required"  title="Solo letras ,Tamaño máximo: 20 caracteres"></form:input>
                       </p>
                       <p>
                       <form:label path="mensajero">Mensajero</form:label>
-                      <form:input path="mensajero" cssClass="form-control"></form:input>
+                      <form:input path="mensajero" cssClass="form-control" required="required"  title="Solo letras ,Tamaño máximo: 50 caracteres"></form:input>
                       </p>
                       
                       <p>
                       <form:label path="cliente">Cliente</form:label>
-                      <form:input path="cliente" cssClass="form-control"></form:input>
+                      <form:input path="cliente" cssClass="form-control" required="required"  title="Solo letras ,Tamaño máximo: 50 caracteres"></form:input>
                       </p>
                       
                       <input type="submit" value="Editar" class="btn btn-danger"/>

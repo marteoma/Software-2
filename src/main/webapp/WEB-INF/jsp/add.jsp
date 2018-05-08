@@ -31,16 +31,16 @@
                    
                       <p>
                       <form:label path="nombre_mensajero">Nombre</form:label>
-                      <form:input path="nombre_mensajero" cssClass="form-control"></form:input>
+                      <form:input path="nombre_mensajero" cssClass="form-control" required="required"  title="Solo letras ,Tamaño máximo: 50 caracteres"></form:input>
                       </p>
                       <p>
                       <form:label path="apellido">Apellido</form:label>
-                      <form:input path="apellido" cssClass="form-control"></form:input>
+                      <form:input path="apellido" cssClass="form-control" required="required" title="Solo letras ,Tamaño máximo:50 caracteres"></form:input>
                       </p>
                       
                       <p>
                       <form:label path="placa">Placa</form:label>
-                      <form:input path="placa" cssClass="form-control"></form:input>
+                      <form:input path="placa" cssClass="form-control" required="required" title="Tamaño máximo:10 caracteres"></form:input>
                       </p>
                       
                       <input type="submit" value="Agregar" class="btn btn-danger"/>
