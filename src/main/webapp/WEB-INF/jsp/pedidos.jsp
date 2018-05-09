@@ -18,7 +18,7 @@
       <main class="content">
           <div style="background: #E6E6E6" id="btn-add">
                         <p style="background: ">
-                            <a href="<c:url value="addP.htm?type=pedido"/>" class="btn btn-success"><span class ="glyphicon glyphicon-plus" aria-hidden="true"></span>Agregar Pedido</a>
+                            <a href="<c:url value="addP.htm"/>" class="btn btn-success"><span class ="glyphicon glyphicon-plus" aria-hidden="true"></span>Agregar Pedido</a>
                     </p>    
                 </div>
           <h1>PEDIDOS ACTUALES</h1>

@@ -33,53 +33,51 @@ public class AddController {
         this.jdbcTemplate = new JdbcTemplate(con.conectar());
     }
 
-    @RequestMapping(method = RequestMethod.GET)
-    public ModelAndView form(HttpServletRequest request) {
-        String type = request.getParameter("type");
-        if (type.equalsIgnoreCase("mensajero")== true) {
-            ModelAndView mav = new ModelAndView();
-            mav.setViewName("add");
-            mav.addObject("Mensajero", new Mensajero());
-            return mav;
-        } else {
-            ModelAndView mav = new ModelAndView();
-            mav.setViewName("addP");
-            mav.addObject("Pedido", new Pedido());
-            return mav;
-        }
-
+    @RequestMapping(value = "add.htm", method = RequestMethod.GET)
+    public ModelAndView mensajero() {
+        ModelAndView mav = new ModelAndView();
+        mav.setViewName("add");
+        mav.addObject("Mensajero", new Mensajero());
+        return mav;
     }
 
-    @RequestMapping(method = RequestMethod.POST)
-    public ModelAndView form(
-            @ModelAttribute("Mensajero") Mensajero u,
-            @ModelAttribute("Pedido") Pedido p,
+    @RequestMapping(value = "addP.htm", method = RequestMethod.GET)
+    public ModelAndView pedido() {
+        ModelAndView mav = new ModelAndView();
+        mav.setViewName("addP");
+        mav.addObject("Pedido", new Pedido());
+        return mav;
+    }
+
+    @RequestMapping(value = "add.htm", method = RequestMethod.POST)
+    public ModelAndView mensajero(@ModelAttribute("Mensajero") Mensajero m,
             BindingResult result,
             SessionStatus status,
-            HttpServletRequest request
-    ) {
-        String type = request.getParameter("type");
-        if (type.equalsIgnoreCase("mensajero")) {
-            if (isNumeric(u.getNombre_mensajero()) == true || isNumeric(u.getApellido()) == true || u.getPlaca().length() > 10) {
-                return new ModelAndView("redirect:/add.htm");
-            } else {
-                this.jdbcTemplate.update("INSERT INTO public.\"Mensajero\"(\n"
-                        + "	 name, lastname, plate)\n"
-                        + "	VALUES ( ?, ?, ?);", u.getNombre_mensajero(), u.getApellido(), u.getPlaca());
-                return new ModelAndView("redirect:/mensajeros.htm");
-            }
+            HttpServletRequest request) {
+        if (isNumeric(m.getNombre_mensajero()) == true || isNumeric(m.getApellido()) == true || m.getPlaca().length() > 10) {
+            return new ModelAndView("redirect:/add.htm");
         } else {
-            if (isNumeric(p.getCliente()) == true || isNumeric(p.getContenido()) == true || isNumeric(p.getMensajero()) == true || p.getEstado().length() > 20) {
+            this.jdbcTemplate.update("INSERT INTO public.\"Mensajero\"(\n"
+                    + "	 name, lastname, plate)\n"
+                    + "	VALUES ( ?, ?, ?);", m.getNombre_mensajero(), m.getApellido(), m.getPlaca());
+            return new ModelAndView("redirect:/mensajeros.htm");
+        }
+    }
+    
+    @RequestMapping(value = "addP.htm", method = RequestMethod.POST)
+    public ModelAndView mensajero(@ModelAttribute("Pedido") Pedido p,
+            BindingResult result,
+            SessionStatus status,
+            HttpServletRequest request) {
+        if (isNumeric(p.getCliente()) == true || isNumeric(p.getContenido()) == true || isNumeric(p.getMensajero()) == true || p.getEstado().length() > 20) {
                 return new ModelAndView("redirect:/addP.htm");
             } else {
-                this.jdbcTemplate.update("INSERT INTO public.pedido(\n" +
-"	contenido, estado,mensajero, cliente)\n" +
-"	VALUES (?, ?, ?, ?);", p.getContenido(), p.getEstado(), p.getMensajero(), p.getCliente());
+                this.jdbcTemplate.update("INSERT INTO public.pedido(\n"
+                        + "	contenido, estado,mensajero, cliente)\n"
+                        + "	VALUES (?, ?, ?, ?);", p.getContenido(), p.getEstado(), p.getMensajero(), p.getCliente());
                 return new ModelAndView("redirect:/pedidos.htm");
 
             }
-        }
-
     }
 
     private boolean isNumeric(String cadena) {
