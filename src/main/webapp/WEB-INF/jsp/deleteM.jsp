@@ -28,8 +28,6 @@
                         <div class="panel-body">
 
                         <form:form method="post" commandName="Mensajero">
-
-
                             <p>
                                 <form:label path="nombre_mensajero">Nombre</form:label>
                                 <form:input path="nombre_mensajero" cssClass="form-control"  disabled="true"></form:input>
@@ -48,7 +46,6 @@
                         </form:form>
                     </div>   
                 </div>
-
             </main>
     </body>
 </html>

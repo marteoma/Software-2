@@ -36,84 +36,68 @@ public class EditController {
         this.jdbcTemplate = new JdbcTemplate(con.conectar());
     }
 
-    @RequestMapping(method = RequestMethod.GET)
-    public ModelAndView form(HttpServletRequest request) {
+    
+    
+    @RequestMapping(value = "editM.htm", method = RequestMethod.GET)
+    public ModelAndView mensajeros(HttpServletRequest request) {
         ModelAndView mav = new ModelAndView();
-        String type = request.getParameter("type");
-        if (type.equalsIgnoreCase("Mensajero")) {
-            int id = Integer.parseInt(request.getParameter("id"));
-
-            Mensajero datos = this.selectMensajero(id);
-            mav.setViewName("editM");
-            String ids ="";
-            ids=Integer.toString(id);
-            Mensajero M = new Mensajero(datos.getApellido(), datos.getNombre_mensajero(),ids , datos.getPlaca());
-           
-            mav.addObject("Mensajero", M);
-            return mav;
-        } else {
-            int id = Integer.parseInt(request.getParameter("id"));
-            Pedido datos = this.selectPedido(id);
-            mav.setViewName("edit");
-            Pedido pedi = new Pedido(id, datos.getContenido(), datos.getEstado(), datos.getMensajero(), datos.getCliente());
-            mav.addObject("Pedido", pedi);
-            return mav;
-
-        }
-
+        long id = Long.parseLong(request.getParameter("id"));
+        Mensajero m = selectMensajero(id);
+        mav.setViewName("editM");
+        mav.addObject("Mensajero", m);
+        return mav;
     }
 
-    @RequestMapping(method = RequestMethod.POST)
-    public ModelAndView form(
-            @ModelAttribute("Pedido") Pedido u,
-            @ModelAttribute("Mensajero") Mensajero m,
+    @RequestMapping(value = "edit.htm", method = RequestMethod.GET)
+    public ModelAndView pedidos(HttpServletRequest request) {
+        ModelAndView mav = new ModelAndView();
+        long id = Long.parseLong(request.getParameter("id"));
+        Pedido p = selectPedido(id);
+        mav.setViewName("edit");
+        mav.addObject("Pedido", p);
+        return mav;
+    }
+    
+    @RequestMapping(value = "editM.htm", method = RequestMethod.POST)
+    public ModelAndView mensajero(@ModelAttribute("Mensajero") Mensajero m,
             BindingResult result,
             SessionStatus status,
-            HttpServletRequest request
-    ) {
-        String type = request.getParameter("type");
-        if (type.equalsIgnoreCase("Mensajero")) {
-            int id = Integer.parseInt(request.getParameter("id"));
-            String ids ="";
-            ids=Integer.toString(id);
-            m.setId_mensajero(ids);
-            if (isNumeric(m.getNombre_mensajero())== true || isNumeric(m.getApellido()) == true || m.getPlaca().length() > 10) {
-                return new ModelAndView("redirect:/editM.htm");
-            } else {
-                this.jdbcTemplate.update("UPDATE public.\"Mensajero\""
-                        + "	SET id=?, name=?, lastname=?, plate=?"
-                        + "	WHERE id =?;", id, m.getNombre_mensajero(), m.getApellido(), m.getPlaca(), id);
-                return new ModelAndView("redirect:/mensajeros.htm");
-            }
-
-        } else {
-            int id = Integer.parseInt(request.getParameter("id"));
-            if (isNumeric(u.getCliente())== true|| isNumeric(u.getContenido())==true || isNumeric(u.getMensajero())==true || u.getEstado().length()> 20){ 
-                return new ModelAndView("redirect:/edit.htm");    
-            }else{
-                this.jdbcTemplate.update("UPDATE public.pedido"
-                        + "	SET contenido=?, estado=?, mensajero=?, cliente=?"
-                        + "	WHERE id_pedido =?;", u.getContenido(), u.getEstado(), u.getMensajero(), u.getCliente(), id);
-                return new ModelAndView("redirect:/pedidos.htm");
-
-            }
-        }
-
+            HttpServletRequest request) {
+        int id = Integer.parseInt(request.getParameter("id"));
+        this.jdbcTemplate.update("UPDATE public.\"Mensajero\""
+                        + "	SET name=?, lastname=?, plate=?"
+                        + "	WHERE id =?;", m.getName(), m.getLastname(), m.getPlate(), id);                
+        return new ModelAndView("redirect:/mensajeros.htm");
     }
 
-    public Pedido selectPedido(int id) {
+    @RequestMapping(value = "edit.htm", method = RequestMethod.POST)
+    public ModelAndView pedidos(@ModelAttribute("Pedido") Pedido u,
+            BindingResult result,
+            SessionStatus status,
+            HttpServletRequest request) {
+        int id = Integer.parseInt(request.getParameter("id"));        
+        this.jdbcTemplate.update("UPDATE public.\"Pedido\""
+                        + "	SET contenido=?, estado=?, cc_mensajero=?"
+                        + "	WHERE id =?;",
+                u.getContenido(), u.getEstado(), u.getCc_mensajero(), id);
+        return new ModelAndView("redirect:/pedidos.htm");
+    }        
+
+    public Pedido selectPedido(long id) {
         final Pedido pedido = new Pedido();
-        String query = "SELECT contenido, estado, id_pedido, mensajero, cliente"
-                + "	FROM public.pedido WHERE id_pedido ='" + id + "'";
+        String query = "SELECT id, id_cliente, direccion, contenido, estado, cc_mensajero\n"
+                + "	FROM public.\"Pedido\" WHERE id ='" + id + "'";
         return (Pedido) jdbcTemplate.query(query, new ResultSetExtractor<Pedido>() {
             @Override
             public Pedido extractData(ResultSet rs) throws SQLException, DataAccessException {
 
                 if (rs.next()) {
-                    pedido.setContenido(rs.getString("contenido"));
-                    pedido.setCliente(rs.getString("cliente"));
-                    pedido.setEstado(rs.getString("estado"));
-                    pedido.setMensajero(rs.getString("mensajero"));
+                    pedido.setId(rs.getLong(1));
+                    pedido.setId_cliente(rs.getLong(2));
+                    pedido.setDireccion(rs.getString(3));
+                    pedido.setContenido(rs.getString(4));
+                    pedido.setEstado(rs.getString(5));
+                    pedido.setCc_mensajero(rs.getString(6));
                 }
                 return pedido;
             }
@@ -121,22 +105,23 @@ public class EditController {
         });
     }
 
-    public Mensajero selectMensajero(int id) {
-        final Mensajero M = new Mensajero();
-        String query = "SELECT id, name, lastname, plate"
-                + "	FROM public.\"Mensajero\""
+    public Mensajero selectMensajero(long id) {
+        final Mensajero m = new Mensajero();
+        String query = "SELECT id, cedula, telefono, name, lastname, plate\n"
+                + "	FROM public.\"Mensajero\"\n"
                 + "	WHERE id= '" + id + "'";
         return (Mensajero) jdbcTemplate.query(query, new ResultSetExtractor<Mensajero>() {
             @Override
             public Mensajero extractData(ResultSet rs) throws SQLException, DataAccessException {
-
                 if (rs.next()) {
-                    M.setNombre_mensajero(rs.getString("name"));
-                    M.setApellido(rs.getString("lastname"));
-                    M.setPlaca(rs.getString("plate"));
-
+                    m.setId(rs.getLong(1));
+                    m.setCedula(rs.getString(2));
+                    m.setTelefono(rs.getString(3));
+                    m.setName(rs.getString(4));
+                    m.setLastname(rs.getString(5));
+                    m.setPlate(rs.getString(6));
                 }
-                return M;
+                return m;
             }
 
         });

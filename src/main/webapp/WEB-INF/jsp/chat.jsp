@@ -34,11 +34,11 @@
                     <div class="group">
                         <h2>Mensajeros</h2>
                         <c:forEach items="${mensajeros}" var="c">
-                            <div onclick="openChat('mensajero', ${c.id_mensajero}, '${c.nombre_mensajero} ${c.apellido}')" 
+                            <div onclick="openChat('mensajero', ${c.id}, '${c.name} ${c.lastname}')" 
                                  class="destinario">
-                                <c:out value="${c.nombre_mensajero}"></c:out>
+                                <c:out value="${c.name}"></c:out>
                                 <c:out value=" "></c:out>
-                                <c:out value="${c.apellido}"></c:out>                                
+                                <c:out value="${c.lastname}"></c:out>                                
                                 </div>
                         </c:forEach>
                     </div>

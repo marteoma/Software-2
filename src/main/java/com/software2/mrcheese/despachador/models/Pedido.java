@@ -10,91 +10,70 @@ package com.software2.mrcheese.despachador.models;
  * @author hhade
  */
 public class Pedido {
-   private String contenido;
-    private int id_pedido;
+   
+    private long id;
+    private long id_cliente;
+    private String direccion;
+    private String contenido;
     private String estado;
-    private String mensajero;
-    private String cliente;
+    private String cc_mensajero;
 
-    public Pedido(){
-        
+    public Pedido(long id, long id_cliente, String direccion, String contenido, String estado, String cc_mensajero) {
+        this.id = id;
+        this.id_cliente = id_cliente;
+        this.direccion = direccion;
+        this.contenido = contenido;
+        this.estado = estado;
+        this.cc_mensajero = cc_mensajero;
     }
-    public Pedido(int id,String conten,String state,String Messenger,String client){
-        id_pedido=id;
-        contenido=conten;
-        estado=state;
-        mensajero=Messenger;
-        cliente=client;
-        
+
+    public Pedido() {}
+
+    public long getId() {
+        return id;
     }
-    /**
-     * @return the contenido
-     */
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public long getId_cliente() {
+        return id_cliente;
+    }
+
+    public void setId_cliente(long id_cliente) {
+        this.id_cliente = id_cliente;
+    }
+
+    public String getDireccion() {
+        return direccion;
+    }
+
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
+    }
+
     public String getContenido() {
         return contenido;
     }
 
-    /**
-     * @param contenido the contenido to set
-     */
     public void setContenido(String contenido) {
         this.contenido = contenido;
     }
 
-    /**
-     * @return the id_pedido
-     */
-    public int getId_pedido() {
-        return id_pedido;
-    }
-
-    /**
-     * @param id_pedido the id_pedido to set
-     */
-    public void setId_pedido(int id_pedido) {
-        this.id_pedido = id_pedido;
-    }
-
-    /**
-     * @return the estado
-     */
     public String getEstado() {
         return estado;
     }
 
-    /**
-     * @param estado the estado to set
-     */
     public void setEstado(String estado) {
         this.estado = estado;
     }
 
-    /**
-     * @return the mensajero
-     */
-    public String getMensajero() {
-        return mensajero;
+    public String getCc_mensajero() {
+        return cc_mensajero;
     }
 
-    /**
-     * @param mensajero the mensajero to set
-     */
-    public void setMensajero(String mensajero) {
-        this.mensajero = mensajero;
+    public void setCc_mensajero(String cc_mensajero) {
+        this.cc_mensajero = cc_mensajero;
     }
-
-    /**
-     * @return the cliente
-     */
-    public String getCliente() {
-        return cliente;
-    }
-
-    /**
-     * @param cliente the cliente to set
-     */
-    public void setCliente(String cliente) {
-        this.cliente = cliente;
-    }
-
 }

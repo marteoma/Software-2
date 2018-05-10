@@ -11,7 +11,6 @@ import com.software2.mrcheese.despachador.models.Pedido;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -54,30 +53,27 @@ public class AddController {
             BindingResult result,
             SessionStatus status,
             HttpServletRequest request) {
-        if (isNumeric(m.getNombre_mensajero()) == true || isNumeric(m.getApellido()) == true || m.getPlaca().length() > 10) {
+        if (isNumeric(m.getName()) == true || isNumeric(m.getLastname()) == true || m.getPlate().length() > 10) {
             return new ModelAndView("redirect:/add.htm");
         } else {
             this.jdbcTemplate.update("INSERT INTO public.\"Mensajero\"(\n"
-                    + "	 name, lastname, plate)\n"
-                    + "	VALUES ( ?, ?, ?);", m.getNombre_mensajero(), m.getApellido(), m.getPlaca());
+                    + "	 name, lastname, plate, cedula, telefono)\n"
+                    + "	VALUES (?, ?, ?, ?, ?);",
+                    m.getName(), m.getLastname(), m.getPlate(), m.getCedula(), m.getTelefono());
             return new ModelAndView("redirect:/mensajeros.htm");
         }
     }
-    
+
     @RequestMapping(value = "addP.htm", method = RequestMethod.POST)
     public ModelAndView mensajero(@ModelAttribute("Pedido") Pedido p,
             BindingResult result,
             SessionStatus status,
             HttpServletRequest request) {
-        if (isNumeric(p.getCliente()) == true || isNumeric(p.getContenido()) == true || isNumeric(p.getMensajero()) == true || p.getEstado().length() > 20) {
-                return new ModelAndView("redirect:/addP.htm");
-            } else {
-                this.jdbcTemplate.update("INSERT INTO public.pedido(\n"
-                        + "	contenido, estado,mensajero, cliente)\n"
-                        + "	VALUES (?, ?, ?, ?);", p.getContenido(), p.getEstado(), p.getMensajero(), p.getCliente());
-                return new ModelAndView("redirect:/pedidos.htm");
-
-            }
+        this.jdbcTemplate.update("INSERT INTO public.\"Pedido\"(\n"
+                    + "	contenido, estado, id_cliente, direccion)\n"
+                    + "	VALUES (?, ?, ?, ?);",
+                    p.getContenido(), "En espera", p.getId_cliente(), p.getDireccion());
+            return new ModelAndView("redirect:/pedidos.htm");
     }
 
     private boolean isNumeric(String cadena) {

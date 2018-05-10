@@ -61,14 +61,17 @@ public class ChatController {
     }
     
     public List<Mensajero> mensajeros(){
-        String mensajerosQuery = "SELECT id, name, lastname, plate FROM \"public\".\"Mensajero\"";
+        String mensajerosQuery = "SELECT id, name, lastname FROM \"public\".\"Mensajero\"";
         List<Mensajero> cs = template.query(mensajerosQuery,
                 new Object[]{},
                 new RowMapper<Mensajero>() {
             @Override
             public Mensajero mapRow(ResultSet rs, int rowNum) throws SQLException {
-                return new Mensajero(rs.getString(3), rs.getString(2),
-                        rs.getString(1), rs.getString(4));
+                Mensajero m = new Mensajero();
+                m.setId(rs.getInt(1));
+                m.setName(rs.getString(2));
+                m.setLastname(rs.getString(3));
+                return m;
             }
         });
         return cs;

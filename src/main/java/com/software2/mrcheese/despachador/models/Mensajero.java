@@ -5,94 +5,78 @@
  */
 package com.software2.mrcheese.despachador.models;
 
-import java.util.ArrayList;
-
 /**
  *
  * @author hhade
  */
 public class Mensajero {
+    private long id;
+    private String cedula;
+    private String telefono;
+    private String name;
+    private String lastname;
+    private String plate;
 
-    private String apellido;
-
-    public Mensajero(String apellido, String nombre_mensajero, String id_mensajero, String placa) {
-        this.apellido = apellido;
-        this.nombre_mensajero = nombre_mensajero;
-        this.id_mensajero = id_mensajero;
-        this.placa = placa;
-    }
-
-    public String getApellido() {
-        return apellido;
-    }
-
-    public void setApellido(String apellido) {
-        this.apellido = apellido;
+    public Mensajero(long id, String cedula, String telefono, String name, String lastname, String plate) {
+        this.id = id;
+        this.cedula = cedula;
+        this.telefono = telefono;
+        this.name = name;
+        this.lastname = lastname;
+        this.plate = plate;
     }
 
     public Mensajero() {
     }
-    private String nombre_mensajero;
-    private String id_mensajero;
-    private String placa;
-    private ArrayList<Pedido> pedidos = new ArrayList();
 
-    /**
-     * @return the nombre_mensajero
-     */
-    public String getNombre_mensajero() {
-        return nombre_mensajero;
+    public long getId() {
+        return id;
     }
 
-    /**
-     * @param nombre_mensajero the nombre_mensajero to set
-     */
-    public void setNombre_mensajero(String nombre_mensajero) {
-        this.nombre_mensajero = nombre_mensajero;
+    public void setId(long id) {
+        this.id = id;
     }
 
-    /**
-     * @return the id_nombre
-     */
-    /**
-     * @return the placa
-     */
-    public String getPlaca() {
-        return placa;
+    public String getCedula() {
+        return cedula;
     }
 
-    /**
-     * @param placa the placa to set
-     */
-    public void setPlaca(String placa) {
-        this.placa = placa;
+    public void setCedula(String cedula) {
+        this.cedula = cedula;
     }
 
-    /**
-     * @return the pedidos
-     */
-    public ArrayList<Pedido> getPedidos() {
-        return pedidos;
+    public String getTelefono() {
+        return telefono;
     }
 
-    /**
-     * @param pedidos the pedidos to set
-     */
-    public void setPedidos(ArrayList<Pedido> pedidos) {
-        this.pedidos = pedidos;
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
     }
 
-    /**
-     * @return the id_mensajero
-     */
-    public String getId_mensajero() {
-        return id_mensajero;
+    public String getName() {
+        return name;
     }
 
-    /**
-     * @param id_mensajero the id_mensajero to set
-     */
-    public void setId_mensajero(String id_mensajero) {
-        this.id_mensajero = id_mensajero;
+    public void setName(String name) {
+        this.name = name;
     }
+
+    public String getLastname() {
+        return lastname;
+    }
+
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
+    }
+
+    public String getPlate() {
+        return plate;
+    }
+
+    public void setPlate(String plate) {
+        this.plate = plate;
+    }
+    
+    
+    
 }

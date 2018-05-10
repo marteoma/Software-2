@@ -50,13 +50,8 @@
 
                                 <input type="submit" value="Eliminar" class="btn btn-danger"/>
                         </form:form>
-
                     </div>
-
-
-
                 </div>
-
             </main>
     </body>
 </html>

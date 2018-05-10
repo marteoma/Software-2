@@ -35,91 +35,88 @@ public class DeleteController {
         Conectar con = new Conectar();
         this.jdbcTemplate = new JdbcTemplate(con.conectar());
     }
-
-    @RequestMapping(method = RequestMethod.GET)
-    public ModelAndView form(HttpServletRequest request) {
-          ModelAndView mav = new ModelAndView();
-        String type = request.getParameter("type");
-        if(type.equalsIgnoreCase("Mensajero")){
-            int id = Integer.parseInt(request.getParameter("id"));
-
-        Mensajero datos = this.selectMensajero(id);
+    
+    @RequestMapping(value = "deleteM.htm", method = RequestMethod.GET)
+    public ModelAndView mensajeros(HttpServletRequest request) {
+        ModelAndView mav = new ModelAndView();
+        long id = Long.parseLong(request.getParameter("id"));
+        Mensajero m = selectMensajero(id);
         mav.setViewName("deleteM");
-        Mensajero M = new Mensajero(datos.getApellido(), datos.getNombre_mensajero(),String.valueOf(id) , datos.getPlaca());
-        mav.addObject("Mensajero", M);
+        mav.addObject("Mensajero", m);
         return mav;
-        }else{
-        int id = Integer.parseInt(request.getParameter("id"));
-        Pedido datos = this.selectPedido(id);
-        mav.setViewName("delete");
-        Pedido pedi = new Pedido(id, datos.getContenido(), datos.getEstado(), datos.getMensajero(), datos.getCliente());
-        mav.addObject("Pedido", pedi);
-        return mav;
-     
-        }
-     
     }
 
-    @RequestMapping(method = RequestMethod.POST)
-    public ModelAndView form(
-            @ModelAttribute("Pedido") Pedido u,
-             @ModelAttribute("Mensajero") Mensajero m,
+    @RequestMapping(value = "delete.htm", method = RequestMethod.GET)
+    public ModelAndView pedidos(HttpServletRequest request) {
+        ModelAndView mav = new ModelAndView();
+        long id = Long.parseLong(request.getParameter("id"));
+        Pedido p = selectPedido(id);
+        mav.setViewName("delete");
+        mav.addObject("Pedido", p);
+        return mav;
+    }
+
+    @RequestMapping(value = "deleteM.htm", method = RequestMethod.POST)
+    public ModelAndView mensajero(@ModelAttribute("Mensajero") Mensajero m,
             BindingResult result,
             SessionStatus status,
-            HttpServletRequest request
-    ) {
-         String type = request.getParameter("type");
-        if(type.equalsIgnoreCase("Mensajero")){
-            int id = Integer.parseInt(request.getParameter("id"));
-        this.jdbcTemplate.update("DELETE FROM public.\"Mensajero\"\n" +
-"	WHERE id =?;", id);
-        return new ModelAndView("redirect:/mensajeros.htm");
-            
-        }else{
+            HttpServletRequest request) {
         int id = Integer.parseInt(request.getParameter("id"));
-        this.jdbcTemplate.update("DELETE FROM public.pedido\n"
-                + "	WHERE id_pedido=?;", id);
-        return new ModelAndView("redirect:/pedidos.htm");    
-        }
-        
-        
+        this.jdbcTemplate.update("DELETE FROM public.\"Mensajero\"\n"
+                + "	WHERE id =?;", id);
+        return new ModelAndView("redirect:/mensajeros.htm");
     }
 
-    public Pedido selectPedido(int id) {
+    @RequestMapping(value = "delete.htm", method = RequestMethod.POST)
+    public ModelAndView pedidos(@ModelAttribute("Pedido") Pedido m,
+            BindingResult result,
+            SessionStatus status,
+            HttpServletRequest request) {
+        int id = Integer.parseInt(request.getParameter("id"));        
+        this.jdbcTemplate.update("DELETE FROM public.\"Pedido\""
+                + "	WHERE id=?;", id);
+        return new ModelAndView("redirect:/pedidos.htm");
+    }
+
+    public Pedido selectPedido(long id) {
         final Pedido pedido = new Pedido();
-        String query = "SELECT contenido, estado, id_pedido, mensajero, cliente\n"
-                + "	FROM public.pedido WHERE id_pedido ='" + id + "'";
+        String query = "SELECT id, id_cliente, direccion, contenido, estado, cc_mensajero\n"
+                + "	FROM public.\"Pedido\" WHERE id ='" + id;
         return (Pedido) jdbcTemplate.query(query, new ResultSetExtractor<Pedido>() {
             @Override
             public Pedido extractData(ResultSet rs) throws SQLException, DataAccessException {
 
                 if (rs.next()) {
-                    pedido.setContenido(rs.getString("contenido"));
-                    pedido.setCliente(rs.getString("cliente"));
-                    pedido.setEstado(rs.getString("estado"));
-                    pedido.setMensajero(rs.getString("mensajero"));
+                    pedido.setId(rs.getLong(1));
+                    pedido.setId_cliente(rs.getLong(2));
+                    pedido.setDireccion(rs.getString(3));
+                    pedido.setContenido(rs.getString(4));
+                    pedido.setEstado(rs.getString(5));
+                    pedido.setCc_mensajero(rs.getString(6));
                 }
                 return pedido;
             }
 
         });
     }
-    public Mensajero selectMensajero(int id) {
-        final Mensajero M = new Mensajero();
-        String query = "SELECT id, name, lastname, plate\n" +
-"	FROM public.\"Mensajero\"\n" +
-"	WHERE id= '" + id + "'";
+
+    public Mensajero selectMensajero(long id) {
+        final Mensajero m = new Mensajero();
+        String query = "SELECT id, cedula, telefono, name, lastname, plate\n"
+                + "	FROM public.\"Mensajero\"\n"
+                + "	WHERE id= '" + id + "'";
         return (Mensajero) jdbcTemplate.query(query, new ResultSetExtractor<Mensajero>() {
             @Override
             public Mensajero extractData(ResultSet rs) throws SQLException, DataAccessException {
-
                 if (rs.next()) {
-                    M.setNombre_mensajero(rs.getString("name"));
-                    M.setApellido(rs.getString("lastname"));
-                    M.setPlaca(rs.getString("plate"));
-                    
+                    m.setId(rs.getLong(1));
+                    m.setCedula(rs.getString(2));
+                    m.setTelefono(rs.getString(3));
+                    m.setName(rs.getString(4));
+                    m.setLastname(rs.getString(5));
+                    m.setPlate(rs.getString(6));
                 }
-                return M;
+                return m;
             }
 
         });

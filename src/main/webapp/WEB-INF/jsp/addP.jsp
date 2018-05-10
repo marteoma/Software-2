@@ -31,19 +31,17 @@
                             <p>
                                 <form:label path="contenido">Contenido</form:label>
                                 <form:input path="contenido" cssClass="form-control" required="required"  title="Solo letras ,Tamaño máximo: 50 caracteres"></form:input>
+                                </p>                                
+                                <p>
+                                <form:label path="direccion">Dirección</form:label>
+                                <form:input path="direccion" cssClass="form-control" required="required"  title="Solo letras ,Tamaño máximo: 20 caracteres"></form:input>
+                                </p>
+                                <p>
+                                <form:label path="id_cliente">Id Cliente</form:label>
+                                <form:input path="id_cliente" cssClass="form-control" required="required"  title="Solo letras ,Tamaño máximo: 50 caracteres"></form:input>
                                 </p>
 
-                                <p>
-                                <form:label path="estado">Estado</form:label>
-                                <form:input path="estado" cssClass="form-control" required="required"  title="Solo letras ,Tamaño máximo: 20 caracteres"></form:input>
-                                </p>
-                                
-                                <p>
-                                <form:label path="cliente">Cliente</form:label>
-                                <form:input path="cliente" cssClass="form-control" required="required"  title="Solo letras ,Tamaño máximo: 50 caracteres"></form:input>
-                                </p>
-
-                                <input type="submit" value="Editar" class="btn btn-danger"/>
+                                <input type="submit" value="Agregar" class="btn btn-danger"/>
                         </form:form>
                     </div>
                 </div>
